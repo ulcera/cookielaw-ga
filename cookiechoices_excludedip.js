@@ -162,24 +162,27 @@
 
 	function _initGA()
 	{		
-		var ip = window.location.hostname;
-		$.getJSON( "//urls",
-			function(data){
-				alert( data.host);
-				var ips = data.host;
-				console.log(ip);
-				console.log(ips);
-				 var _gaq = _gaq || [];
-				  _gaq.push(['_setAccount', 'UA-XXXXXXX']);
-				  _gaq.push(['_trackPageview']);
-				  (function() {
-					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-				  })();
+		$.ajax({
+			type: "POST",
+			url: "cerca_ip.php",
+			data: "",
+			async : 'false',
+			success: function recupera_response(data,textStatus){
+				var obj = jQuery.parseJSON(data);
+				console.log(obj);
+				if(obj['res']==true)
+				{
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-XXXXXXX']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				}
 			}
-		);		
-		
+		});		
 	}
     function _shouldDisplayConsent() {
       // Display the header only if the cookie has not been set.
