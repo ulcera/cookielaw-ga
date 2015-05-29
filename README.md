@@ -2,7 +2,7 @@
 Cookielaw repo only for activate google analytics after click on ok button.
 
 <h1>HOW TO USE</h1>
-<code>
+```
   <script src="common/js/cookiechoices.js"></script>
   	<script>
     document.addEventListener('DOMContentLoaded', function(event) {
@@ -10,7 +10,7 @@ Cookielaw repo only for activate google analytics after click on ok button.
         'ok button', 'policy button', 'http://example.com');
     });
   </script>
-</code>
+```
 for cookiechoices.js (original)
 
  Copyright 2014 Google Inc. All rights reserved.
